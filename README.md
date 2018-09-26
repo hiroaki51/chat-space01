@@ -1,19 +1,67 @@
-# README
+# DB
+---
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## uersテーブル
 
-Things you may want to cover:
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: false|
+|user_name|varchar|null: false, foreign_key: false|
 
-* Ruby version
+### Association
+- has_many :members
+- has_many :chats
+- has_many :comments
 
-* System dependencies
+## membersテーブル
 
-* Configuration
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
 
-* Database creation
+### Association
+- belongs_to :group
+- belongs_to :user
 
-sss
+## groupsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|group_id|integer|null: false, foreign_key: false|
+|group_name|varchar|null: false, foreign_key: false|
+
+### Association
+- has_many :members
+
+## chatsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|chat_id|integer|null: false, foreign_key: false|
+|chat_text|varchar|null: false, foreign_key: false|
+|chat_user|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- has_many :comments
+
+## commentsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|chat_id|integer|null: false, foreign_key: true|
+|comment_id|integer|null: false, foreign_key: false|
+|comment_text|varchar|null: false, foreign_key: false|
+|comment_user|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :chat
+- belongs_to :user
+
+
+# その他今後記載予定
+---
 
 * Database initialization
 
