@@ -10,7 +10,7 @@
 
 ### Association
 - has_many :members
-- has_many :chats
+- has_many :messages
 - has_many :comments
 
 ## membersテーブル
@@ -34,13 +34,15 @@
 ### Association
 - has_many :members
 
-## chatsテーブル
+## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|chat_id|integer|null: false, foreign_key: false|
-|chat_text|varchar|null: false, foreign_key: false|
-|chat_user|integer|null: false, foreign_key: true|
+|message_id|integer|null: false, foreign_key: false|
+|body|text|null: false, foreign_key: false|
+|image|string|null: false, foreign_key: false|
+|group_id|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -50,13 +52,13 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|chat_id|integer|null: false, foreign_key: true|
+|message_id|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
 |comment_id|integer|null: false, foreign_key: false|
-|comment_text|varchar|null: false, foreign_key: false|
-|comment_user|integer|null: false, foreign_key: true|
+|comment_text|text|null: false, foreign_key: false|
 
 ### Association
-- belongs_to :chat
+- belongs_to :message
 - belongs_to :user
 
 
