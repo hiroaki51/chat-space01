@@ -1,0 +1,43 @@
+!!!
+%header
+%body
+  .top
+  .leftContainer
+    .leftContainer__upper
+      .leftContainer__upper__username Hello World
+      .leftContainer__upper__icons
+        .leftContainer__upper__icons--edit
+          = fa_icon("edit")
+        .leftContainer__upper__icons--cog
+          = fa_icon("cog")
+    .leftContainer__bottom
+      .leftContainer__bottom__group
+        .leftContainer__bottom__group_name Hiroaki
+        .leftContainer__bottom__group_message Hello guys!
+
+  .rightContainer
+    .rightContainer__upper
+      .rightContainer__upper__message
+        .rightContainer__upper__message__content Exam news
+        .rightContainer__upper__message__member Hiro and Tao
+      .rightContainer__upper__button
+        %form
+          %button.edit{type: "submit"} EDIT
+    .rightContainer__main
+      .rightContainer__main__message
+        .rightContainer__main__message__info
+          .rightContainer__main__message__info__user Hirano
+          .rightContainer__main__message__info__date 2018/09/27
+        .rightContainer__main__message__content Wonderful!
+    .rightContainer__bottom
+      .rightContainer__bottom__input
+        %form
+          %input.content{type: "text"}
+      .rightContainer__bottom__submit
+        %form
+          %button.submit{type: "submit"} SUBMIT
+
+
+
+
+
