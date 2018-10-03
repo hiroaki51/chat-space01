@@ -1,8 +1,22 @@
+@import "config/colors";
 
-@import "font-awesome";
-@import "./reset";
+@import "bootstrap";
 @import "variable";
+@import "flexbox";
 @import "messages";
+@import "bootstrap-sprockets";
+@import "font-awesome";
+@import "config/size";
+@import "config/reset";
+@import "mixins/mixin";
+@import "mixins/vendor_prefix";
+@import "modules/side_bar";
+@import "modules/chat";
+@import "modules/user";
+@import "modules/flash";
+@import "modules/group";
+@import "./reset";
+
 
 /*
 *= require_tree .
