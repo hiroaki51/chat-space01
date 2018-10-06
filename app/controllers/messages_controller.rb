@@ -2,7 +2,11 @@ class MessagesController < ApplicationController
 
   before_action :set_group
 
+  @groupusernames = []
+  @groupusers = []
+
   def index
+    @groupusernames = []
     @message = Message.new
     @messages = @group.messages.includes(:user)
   end

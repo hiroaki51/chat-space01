@@ -16,4 +16,5 @@
           .group__name
             = group.name
           .group__message
-            メッセージはまだありません。
+            - group.messages.each do |message|
+              = message.content

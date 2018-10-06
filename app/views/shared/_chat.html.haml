@@ -1,17 +1,25 @@
 .chat
   .header
     .leftHeader
-      .leftHeader__title TEMPTITLE
-      .leftHeader__members TEMPMEMBER
+      .leftHeader__title
+        = @group.name
+      .leftHeader__members
+        - @group.users.each do |groupuser|
+          = groupuser.name
     .rightHeader
-      .rightHeader__button EDIT
+      .rightHeader__button
+        = link_to "EDIT", edit_group_path(@group.id)
   .messages
-    .message
-      .upper-message
-        .upper-message__user-name TEMPUSER
-        .upper-message__date 1999/12/31
-      .lower-message
-        .lower-message__content TEMPMESSAGE
+    - @group.messages.each do |message|
+      .message
+        .upper-message
+          .upper-message__user-name
+            = message.users.name
+          .upper-message__date
+            = message.created_at
+        .lower-message
+          .lower-message__content
+            = message.content
   .form
     %input.form__message{type: "text", placehold: "Please input message"}
     .form__mask
