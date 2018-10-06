@@ -1,0 +1,19 @@
+.chat
+  .header
+    .leftHeader
+      .leftHeader__title TEMPTITLE
+      .leftHeader__members TEMPMEMBER
+    .rightHeader
+      .rightHeader__button EDIT
+  .messages
+    .message
+      .upper-message
+        .upper-message__user-name TEMPUSER
+        .upper-message__date 1999/12/31
+      .lower-message
+        .lower-message__content TEMPMESSAGE
+  .form
+    %input.form__message{type: "text", placehold: "Please input message"}
+    .form__mask
+      .form__mask__image{for: "message_image"}
+    %input.form__submit{type: "submit"}
