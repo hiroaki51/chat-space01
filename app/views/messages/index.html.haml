@@ -1,19 +1,23 @@
 !!!
 %header
 %body
+
   .top
-  .leftContainer
-    .leftContainer__upper
-      .leftContainer__upper__username Hello World
-      .leftContainer__upper__icons
-        .leftContainer__upper__icons--edit
-          = fa_icon("edit")
-        .leftContainer__upper__icons--cog
-          = fa_icon("cog")
-    .leftContainer__bottom
-      .leftContainer__bottom__group
-        .leftContainer__bottom__group_name Hiroaki
-        .leftContainer__bottom__group_message Hello guys!
+    .wrapper
+      = render 'shared/side_bar'
+
+  / .leftContainer
+  /   .leftContainer__upper
+  /     .leftContainer__upper__username Hello World
+  /     .leftContainer__upper__icons
+  /       .leftContainer__upper__icons--edit
+  /         = fa_icon("edit")
+  /       .leftContainer__upper__icons--cog
+  /         = fa_icon("cog")
+  /   .leftContainer__bottom
+  /     .leftContainer__bottom__group
+  /       .leftContainer__bottom__group_name Hiroaki
+  /       .leftContainer__bottom__group_message Hello guys!
 
   .rightContainer
     .rightContainer__upper
