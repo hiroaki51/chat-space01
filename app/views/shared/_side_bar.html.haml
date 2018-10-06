@@ -16,5 +16,4 @@
           .group__name
             = group.name
           .group__message
-            - group.messages.each do |message|
-              = message.content
+            = group.show_last_message
