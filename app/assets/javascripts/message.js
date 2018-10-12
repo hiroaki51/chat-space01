@@ -40,6 +40,8 @@ $(function(){
             $('.message').append(html)
             $('.form__message').val('')
         })
-
+        .fail(function(){
+            alert('error');
+        })
     })
 });
