@@ -3,7 +3,6 @@ $(function(){
     function buildHTML(message){
         var lowerMessage = "";
         var lowerMessageImage = "";
-        console.log('IMAGE:', message.image.url)
         if(message.content != null){
             lowerMessage = `<p class="lower-message__content">
                                     ${message.content}
@@ -12,9 +11,6 @@ $(function(){
         if(message.image.url != null){
             lowerMessageImage = `<img src= ${message.image.url} class=" lower-message__image">`;
         }
-        // console.log('image mot', message.image.url);
-        // console.log('message', lowerMessage);
-        console.log('CONSOLE IMAGE:', lowerMessageImage);
         var html = `<div class="message">
                         <div class="upper-message">
                             <div class="upper-message__user-name">
@@ -36,6 +32,11 @@ $(function(){
         e.preventDefault();
         var formData = new FormData(this);
         var url = $(this).attr('action');
+        // 操作対象のフォーム要素を取得
+        var form = $(this);
+        // 送信ボタンを取得
+        var button = form.find('button');
+
 
         $.ajax({
             url: url,
@@ -51,6 +52,8 @@ $(function(){
             $('.form__message').val('');
 
             $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight}, 500, "swing");
+            $('.form__submit').attr('disabled', false);
+
         })
         .error(function(XMLHttpRequest, textStatus, errorThrown) {
             alert('error!!!');
