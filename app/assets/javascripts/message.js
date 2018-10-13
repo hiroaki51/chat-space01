@@ -1,21 +1,32 @@
 $(function(){
 
     function buildHTML(message){
+        var lowerMessage = "";
+        var lowerMessageImage = "";
+        console.log('IMAGE:', message.image.url)
+        if(message.content != null){
+            lowerMessage = `<p class="lower-message__content">
+                                    ${message.content}
+                                </p>`;
+        }
+        if(message.image.url != null){
+            lowerMessageImage = `<img src= ${message.image.url} class=" lower-message__image">`;
+        }
+        // console.log('image mot', message.image.url);
+        // console.log('message', lowerMessage);
+        console.log('CONSOLE IMAGE:', lowerMessageImage);
         var html = `<div class="message">
                         <div class="upper-message">
                             <div class="upper-message__user-name">
-                                ${message.user.name}
+                                ${message.user_name}
                             </div>
                             <div class="upper-message__date">
                                 ${message.created_at}
                             </div>
                         </div>
                         <div class="lower-message">
-                            ${if message.content.present?}
-                                <p class="lower-message__content">
-                                    ${message.content}
-                                </p>
-                            ${image_tag message.image.url, class=" lower-message__image" if message.image.present?}
+                            ${lowerMessage}
+                            ${lowerMessageImage}
                         </div>`
 
         return html;
@@ -36,8 +47,17 @@ $(function(){
         })
         .done(function(data){
             var html = buildHTML(data);
-            $('.messages').append(html)
-            $('.form__message').val('')
+            $('.messages').append(html);
+            $('.form__message').val('');
+
+            var destId = $(this).attr("href");
+            var destTop = $(destId).position();
+            // .position()で要素内の相対位置を取得
+            console.log('this', this);
+            console.log('destId', destId);
+            console.log('destTop', destTop);
+
+            $('.messages').animate({scrollTop: destTop}, 1000);
         })
         .error(function(XMLHttpRequest, textStatus, errorThrown) {
             alert('error!!!');
@@ -45,8 +65,5 @@ $(function(){
             console.log("textStatus     : " + textStatus);
             console.log("errorThrown    : " + errorThrown.message);
         })
-        // .fail(function(){
-        //     alert('error');
-        // })
     })
 });
