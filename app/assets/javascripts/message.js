@@ -50,14 +50,7 @@ $(function(){
             $('.messages').append(html);
             $('.form__message').val('');
 
-            var destId = $(this).attr("href");
-            var destTop = $(destId).position();
-            // .position()で要素内の相対位置を取得
-            console.log('this', this);
-            console.log('destId', destId);
-            console.log('destTop', destTop);
-
-            $('.messages').animate({scrollTop: destTop}, 1000);
+            $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight}, 500, "swing");
         })
         .error(function(XMLHttpRequest, textStatus, errorThrown) {
             alert('error!!!');
