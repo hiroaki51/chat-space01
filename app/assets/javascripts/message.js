@@ -5,8 +5,8 @@ $(function(){
         var lowerMessageImage = "";
         if(message.content != null){
             lowerMessage = `<p class="lower-message__content">
-                                    ${message.content}
-                                </p>`;
+                                ${message.content}
+                            </p>`;
         }
         if(message.image.url != null){
             lowerMessageImage = `<img src= ${message.image.url} class=" lower-message__image">`;
@@ -23,7 +23,8 @@ $(function(){
                         <div class="lower-message">
                             ${lowerMessage}
                             ${lowerMessageImage}
-                        </div>`
+                        </div>
+                    </div>`
 
         return html;
     }
@@ -50,11 +51,8 @@ $(function(){
             $('.form__submit').attr('disabled', false);
 
         })
-        .error(function(XMLHttpRequest, textStatus, errorThrown) {
-            alert('error!!!');
-            console.log("XMLHttpRequest : " + XMLHttpRequest.status);
-            console.log("textStatus     : " + textStatus);
-            console.log("errorThrown    : " + errorThrown.message);
+        .fail(function() {
+            alert('ajax error!');
         })
     })
 });
