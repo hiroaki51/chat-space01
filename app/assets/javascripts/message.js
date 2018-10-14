@@ -32,11 +32,6 @@ $(function(){
         e.preventDefault();
         var formData = new FormData(this);
         var url = $(this).attr('action');
-        // 操作対象のフォーム要素を取得
-        var form = $(this);
-        // 送信ボタンを取得
-        var button = form.find('button');
-
 
         $.ajax({
             url: url,
