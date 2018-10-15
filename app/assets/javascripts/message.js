@@ -52,6 +52,9 @@ $(function(){
 
         })
         .fail(function() {
+            $('.form__message').val('');
+            $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight}, 500, "swing");
+
             alert('ajax error!');
         })
     })
