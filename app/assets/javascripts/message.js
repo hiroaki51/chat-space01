@@ -54,6 +54,7 @@ $(function(){
         .fail(function() {
             $('.form__message').val('');
             $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight}, 500, "swing");
+            $('.form__submit').attr('disabled', false);
 
             alert('ajax error!');
         })
