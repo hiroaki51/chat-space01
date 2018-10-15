@@ -17,6 +17,7 @@ module ChatSpace
     end
     # I18n.enforce_available_locales = true
     config.i18n.default_locale = :ja
+    config.time_zone = 'Tokyo'
 
   end
 end
