@@ -33,7 +33,7 @@ $(function(){
         e.preventDefault();
         var formData = new FormData(this);
         var url = $(this).attr('action');
-
+        console.log(url);
         $.ajax({
             url: url,
             type: "POST",
