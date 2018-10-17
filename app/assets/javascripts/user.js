@@ -11,21 +11,20 @@ $(function(){
 
     $('#user-search-field').on('keyup', function(e) {
         e.preventDefault();
-        var input = this.val();
-
+        var input = $('#user-search-field').val();
         $.ajax({
-            url: '/users/index',
+            url: '/users',
             type: 'GET',
             data: { keyword: input },
-            dataType: 'json',
-            processData: false,
-            contentType: false
+            dataType: 'json'
         })
         .done(function(data){
             $('.js-user-search-result').empty();
-            if (data.length !== 0) {
+            console.log("data:", data);
+            if (data !== null) {
                 data.forEach(function(data){
                     var html = buildHTML(data);
+                    console.log("html:", html);
                     $('.js-user-search-result').append(html);
                 });
             }
