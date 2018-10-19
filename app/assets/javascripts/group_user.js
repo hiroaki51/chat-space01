@@ -1,5 +1,5 @@
 $(function(){
-  var groupuser = $(".chat-group-users .js-add-user");
+  var groupuser = $("#chat-group-users");
 
   function appendUser(user_id, user_name){
     var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-8'>
@@ -11,8 +11,8 @@ $(function(){
   }
 
   $(document).on("click", ".chat-group-user__btn--add", function(){
-    var user_id = this.attr('data-user-id');
-    var user_name = this.attr('data-user-name');
+    var user_id = $(this).attr('data-user-id');
+    var user_name = $(this).attr('data-user-name');
     appendUser(user_id, user_name);
     $(".js-user-search-result").empty();
   })
