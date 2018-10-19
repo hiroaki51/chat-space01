@@ -24,8 +24,9 @@
       </div>
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
-      %label.chat-group-form__label{:for => "chat_group_チャットメンバー"} チャットメンバー
+      %label.chat-group-form__label(for="chat_group_チャットメンバー")チャットメンバー
     .chat-group-form__field--right
+<<<<<<< HEAD
       / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
       = f.collection_check_boxes :user_ids, User.all, :id, :name
       / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
@@ -36,6 +37,17 @@
         <p class='chat-group-user__name'>seo_kyohei</p>
         </div>
         </div>
+=======
+      / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
+
+      #chat-group-users
+        - group.users.each do |gu|
+          .chat-group-user.clearfix(id="chat-group-user-#{gu.id}")
+            = f.hidden_field :chat_group, value: gu.id
+            %p.chat-group-user__name #{gu.name}
+            %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
+
+>>>>>>> parent of 70f0bc1... Merge branch 'master' into incremental-search
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
