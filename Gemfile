@@ -65,6 +65,7 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'pry-rails'
 gem 'pry-byebug'
 gem 'pry-doc'
 
