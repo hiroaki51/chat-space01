@@ -13,7 +13,7 @@
 - has_many :messages
 - has_many :comments
 
-## group_usersテーブル
+## membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
