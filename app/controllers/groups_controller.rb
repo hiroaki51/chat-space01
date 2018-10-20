@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.update(group_params)
+    if @group.update(update_group_params)
       redirect_to group_messages_path(@group), notice: 'グループを編集しました'
     else
       render :edit
@@ -33,7 +33,11 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    params.require(:group).permit(:name, { :user_ids => [] })
+    params.require(:group).permit(:name, { :user_ids => [] }, group_users_attributes: [:group_id, :user_id])
+  end
+
+  def update_group_params
+    params.require(:group).permit(:name, { :user_ids => [] }, group_users_attributes: [:group_id, :user_id, :_destroy, :id])
   end
 
   def set_group
