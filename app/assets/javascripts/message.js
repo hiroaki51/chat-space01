@@ -8,10 +8,11 @@ $(function(){
                                 ${message.content}
                             </p>`;
         }
+        console.log('id', message.id);
         if(message.image.url != null){
             lowerMessageImage = `<img src= ${message.image.url} class=" lower-message__image">`;
         }
-        var html = `<div class="message">
+        var html = `<div class="message" id = ${message.id}>
                         <div class="upper-message">
                             <div class="upper-message__user-name">
                                 ${message.user_name}
@@ -59,38 +60,60 @@ $(function(){
         })
     })
 
+    function getlatestid(){
+        var latest_id = "";
+        var elements = document.getElementsByClassName('message');
+        console.log('elements', elements);
+        $.each(elements,function() {
+            var current_id =  this.id;
+            console.log('current', this.id);
+            if (latest_id < current_id) {
+                latest_id = current_id;
+            }
+        });
+        console.log('latest', latest_id);
+        return latest_id;
+    }
+
     function buildreloadHTML(messages){
         var htmls = "";
+        var max_len = 0;
 
+        latest_id = getlatestid();
+        console.log('latest2', latest_id);
         $.each(messages, function(index, val){
-            var lowerMessage = "";
-            var lowerMessageImage = "";
+            if(val.id > latest_id){
+                console.log('latestid', latest_id);
+                console.log('current', val.id);
 
-            if(val.content != null){
-                lowerMessage = `<p class="lower-message__content">
-                                    ${val.content}
-                                </p>`;
-            }
-            if(val.image.url != null){
-                lowerMessageImage = `<img src= ${val.image.url} class=" lower-message__image">`;
-            }
+                var lowerMessage = "";
+                var lowerMessageImage = "";
 
-            var html = `<div class="message">
-                        <div class="upper-message">
-                            <div class="upper-message__user-name">
-                                ${val.user_name}
+                if(val.content != null){
+                    lowerMessage = `<p class="lower-message__content">
+                                        ${val.content}
+                                    </p>`;
+                }
+                if(val.image.url != null){
+                    lowerMessageImage = `<img src= ${val.image.url} class=" lower-message__image">`;
+                }
+
+                var html = `<div class="message" id=${val.id}>
+                            <div class="upper-message">
+                                <div class="upper-message__user-name">
+                                    ${val.user_name}
+                                </div>
+                                <div class="upper-message__date">
+                                    ${val.created_at}
+                                </div>
                             </div>
-                            <div class="upper-message__date">
-                                ${val.created_at}
+                            <div class="lower-message">
+                                ${lowerMessage}
+                                ${lowerMessageImage}
                             </div>
-                        </div>
-                        <div class="lower-message">
-                            ${lowerMessage}
-                            ${lowerMessageImage}
-                        </div>
-                    </div>`
-            htmls += html
-
+                        </div>`
+                htmls += html
+            }
         })
         return htmls;
     }
@@ -117,6 +140,6 @@ $(function(){
         })
     }
 
-    setInterval(reload,7000);
+    setInterval(reload,4000);
 
 });
