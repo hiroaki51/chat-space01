@@ -58,4 +58,65 @@ $(function(){
             alert('ajax error!');
         })
     })
+
+    function buildreloadHTML(messages){
+        var htmls = "";
+
+        $.each(messages, function(index, val){
+            var lowerMessage = "";
+            var lowerMessageImage = "";
+
+            if(val.content != null){
+                lowerMessage = `<p class="lower-message__content">
+                                    ${val.content}
+                                </p>`;
+            }
+            if(val.image.url != null){
+                lowerMessageImage = `<img src= ${val.image.url} class=" lower-message__image">`;
+            }
+
+            var html = `<div class="message">
+                        <div class="upper-message">
+                            <div class="upper-message__user-name">
+                                ${val.user_name}
+                            </div>
+                            <div class="upper-message__date">
+                                ${val.created_at}
+                            </div>
+                        </div>
+                        <div class="lower-message">
+                            ${lowerMessage}
+                            ${lowerMessageImage}
+                        </div>
+                    </div>`
+            htmls += html
+
+        })
+        return htmls;
+    }
+
+    var reload = function(){
+        $.ajax({
+            url: "messages",
+            type: "GET",
+            dataType: 'json',
+        })
+        .done(function(data){
+            var html = buildreloadHTML(data);
+            $('.messages').append(html);
+
+            $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight}, 500, "swing");
+            $('.form__submit').attr('disabled', false);
+
+        })
+        .fail(function() {
+            $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight}, 500, "swing");
+            $('.form__submit').attr('disabled', false);
+
+            alert('ajax error!');
+        })
+    }
+
+    setInterval(reload,7000);
+
 });
