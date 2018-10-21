@@ -10,10 +10,7 @@ class MessagesController < ApplicationController
     @message = Message.new
     @messages = @group.messages.includes(:user)
     respond_to do |format|
-      format.html do
-
-      end
-
+      format.html
       format.json
     end
   end

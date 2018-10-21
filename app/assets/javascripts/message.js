@@ -8,7 +8,6 @@ $(function(){
                                 ${message.content}
                             </p>`;
         }
-        console.log('id', message.id);
         if(message.image.url != null){
             lowerMessageImage = `<img src= ${message.image.url} class=" lower-message__image">`;
         }
@@ -63,15 +62,12 @@ $(function(){
     function getlatestid(){
         var latest_id = "";
         var elements = document.getElementsByClassName('message');
-        console.log('elements', elements);
         $.each(elements,function() {
             var current_id =  this.id;
-            console.log('current', this.id);
             if (latest_id < current_id) {
                 latest_id = current_id;
             }
         });
-        console.log('latest', latest_id);
         return latest_id;
     }
 
@@ -80,11 +76,8 @@ $(function(){
         var max_len = 0;
 
         latest_id = getlatestid();
-        console.log('latest2', latest_id);
         $.each(messages, function(index, val){
             if(val.id > latest_id){
-                console.log('latestid', latest_id);
-                console.log('current', val.id);
 
                 var lowerMessage = "";
                 var lowerMessageImage = "";
