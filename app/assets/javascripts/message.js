@@ -11,8 +11,8 @@ $(function(){
         if(message.image.url != null){
             lowerMessageImage = `<img src= ${message.image.url} class=" lower-message__image">`;
         }
-        var html = `<div class="message" id = ${message.id}>
-                        <div class="upper-message">
+        var html = `<div class="message">
+                        <div class="upper-message" id=${message.id}>
                             <div class="upper-message__user-name">
                                 ${message.user_name}
                             </div>
@@ -60,14 +60,16 @@ $(function(){
     })
 
     function getlatestid(){
-        var latest_id = "";
-        var elements = document.getElementsByClassName('message');
-        $.each(elements,function() {
-            var current_id =  this.id;
-            if (latest_id < current_id) {
-                latest_id = current_id;
+        var latest_id = "0";
+        var elements = document.getElementsByClassName('upper-message');
+        $.each(elements, function(index, val){
+            if (val.id != null){
+                var current_id = val.id;
+                if (latest_id < current_id) {
+                    latest_id = current_id;
+                }
             }
-        });
+        })
         return latest_id;
     }
 
@@ -91,8 +93,8 @@ $(function(){
                     lowerMessageImage = `<img src= ${val.image.url} class=" lower-message__image">`;
                 }
 
-                var html = `<div class="message" id=${val.id}>
-                            <div class="upper-message">
+                var html = `<div class="message">
+                            <div class="upper-message" id=${val.id}>
                                 <div class="upper-message__user-name">
                                     ${val.user_name}
                                 </div>
@@ -108,10 +110,11 @@ $(function(){
                 htmls += html
             }
         })
+
         return htmls;
     }
 
-    var reload = function(){
+    function reload(){
         $.ajax({
             url: "messages",
             type: "GET",
@@ -133,6 +136,6 @@ $(function(){
         })
     }
 
-    setInterval(reload,4000);
+    setInterval(reload,2000);
 
 });
