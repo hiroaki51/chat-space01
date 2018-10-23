@@ -62,7 +62,6 @@ $(function(){
     function getlatestid(){
         var latest_id = "0";
         var elements = $.makeArray($('.upper-message'));
-        console.log('elements',elements);
         $.each(elements, function(index, val){
             if (val.id != null){
                 var current_id = val.id;
